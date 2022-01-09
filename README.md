@@ -25,10 +25,10 @@ The dataset consists of a total of 14 features and 303 rows. This dataset is fou
     -- 0 represents female 
     -- 1 represents male 
     3. chest pain type (cp)
-    -- 1 represents typical angina 
-    -- 2 represents atypical angina 
-    -- 3 represents non-anginal pain 
-    -- 4 represents asymptomatic        
+    -- 0 represents typical angina 
+    -- 1 represents atypical angina 
+    -- 2 represents non-anginal pain 
+    -- 3 represents asymptomatic        
     4. resting blood pressure (trestbps)
     5. serum cholesterol in mg/dl (chol)
     6. fasting blood sugar > 120 mg/dl (fbs) 
@@ -42,7 +42,7 @@ The dataset consists of a total of 14 features and 303 rows. This dataset is fou
     9. exercise induced angina (exang) 
     10. old peak = ST depression induced by exercise relative to rest (oldpeak)
     11. the slope of the peak exercise ST segment (slope)
-    -- 0 respresents upsloping
+    -- 0 represents upsloping
     -- 1 represents flat
     -- 2 represents downsloping
     12. number of major vessels (0-4) colored by flourosopy (ca)

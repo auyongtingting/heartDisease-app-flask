@@ -3,7 +3,7 @@
 The goal of this heart disease prediction project is to determine if an individual should be healthy or diagnosed with heart disease. It is done with the use of Decision Tree algorithm.
 If you would like to explore on how the model is being created, you may refer to "prediction_heart_disease.ipynb".  
 
-With the intention of allowing these individuals to access to the model with ease, a simple web application has been developed with the use of Flask, HTML and CSS.  
+With the intention of allowing these individuals to access to the model with ease, a simple web application has been developed with the use of Flask, HTML and Bootstrap  
 
 # 1. Getting Started
   - Step 1 : Download the respective files 

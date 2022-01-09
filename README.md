@@ -6,10 +6,10 @@ If you would like to explore on how the model is being created, you may refer to
 With the intention of allowing these individuals to access to the model with ease, a simple web application has been developed with the use of Flask, HTML and CSS.  
 
 # 1. Getting Started
-Step 1 : Download the respective files 
-Step 2 : Based on your operating systems, switch on WampServer/MAMP 
-Step 3 : Enter "python app.py" into command prompt/terminal to run the file app.py 
-Step 4 : Based on the output given, enter http://127.0.0.1:5000/ into your browser
+  - Step 1 : Download the respective files 
+  - Step 2 : Based on your operating systems, switch on WampServer/MAMP 
+  - Step 3 : Enter "python app.py" into command prompt/terminal to run the file app.py 
+  - Step 4 : Based on the output given, enter http://127.0.0.1:5000/ into your browser
 
 <p align="center">
   <img src="images/readme_screenshot1.png" width="700"/> <br>

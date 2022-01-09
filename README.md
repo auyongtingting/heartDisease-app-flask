@@ -1,12 +1,29 @@
-### Install 
+# Heart Disease Prediction Application 
 
-### Data 
+The goal of this heart disease prediction project is to determine if an individual should be healthy or diagnosed with heart disease. It is done with the use of Decision Tree algorithm.
+If you would like to explore on how the model is being created, you may refer to "prediction_heart_disease.ipynb".  
+
+With the intention of allowing these individuals to access to the model with ease, a simple web application has been developed with the use of Flask, HTML and CSS.  
+
+# 1. Getting Started
+Step 1 : Download the respective files 
+Step 2 : Based on your operating systems, switch on WampServer/MAMP 
+Step 3 : Enter "python app.py" into command prompt/terminal to run the file app.py 
+Step 4 : Based on the output given, enter http://127.0.0.1:5000/ into your browser
+
+<p align="center">
+  <img src="images/readme_screenshot1.png" width="700"/> <br>
+</p>
+
+# 2. Data 
 
 The dataset consists of a total of 14 features and 303 rows. This dataset is found on Kaggle (https://www.kaggle.com/ronitf/heart-disease-uci), originated from UCI Heart Disease (https://archive.ics.uci.edu/ml/datasets/Heart+Disease). 
 
-## Features
+# 3. Features
     1. age 
     2. sex 
+    -- 0 represents female 
+    -- 1 represents male 
     3. chest pain type (cp)
     -- 1 represents typical angina 
     -- 2 represents atypical angina 
@@ -23,14 +40,14 @@ The dataset consists of a total of 14 features and 303 rows. This dataset is fou
     -- 2 represents showing probable or definite left ventricular hypertrophy by Estes' criteria 
     8. maximum heart rate achieved (thalach)
     9. exercise induced angina (exang) 
-    -- 1 represents yes
     -- 0 represents no 
+    -- 1 represents yes
     10. old peak = ST depression induced by exercise relative to rest (oldpeak)
     11. the slope of the peak exercise ST segment (slope)
     12. number of major vessels (0-3) colored by flourosopy (ca)
-    13. thal: 3 = normal; 6=fixed defect; 7=reversable defect (thal)
+    13. thal: 3 = normal; 6=fixed defect; 7 = reversable defect (thal)
 
 ## Target 
     14. presence of heart disease (yes/no)
     -- 1 represents yes 
-    -- 0 represents no 
+    -- 0 represents no

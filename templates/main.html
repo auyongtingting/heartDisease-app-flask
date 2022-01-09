@@ -1,0 +1,230 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" src="style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Heart Disease Prediction</title>
+
+    <style>
+      body {
+        background-color: #E3ECFF;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <div class="align-items-center p-5">
+      <div id="header" class="d-flex justify-content-center"><h1>Heart Disease Prediction</h1></div>
+      <br>
+      
+      {% if show_predictions_modal %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Show Results 
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {{prediction}}
+                <br><br>
+                For more information of heart disease, please visit https://www.cdc.gov/heartdisease/about.htm
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+      {% endif %}
+
+      <form id="heartpredictionform" action="{{ url_for('main') }}" method="POST">
+        <div class="form-group align-items-center">
+
+        <!-- Age -->
+        <label for="formGroupExampleInput"><b>Age:</b></label>
+        <input type="number" class="form-control w-25 p-2" name= "age" id="age" min = 1 placeholder="Age" required/>
+        <br>
+
+        <!--Sex-->
+        <label for="formGroupExampleInput"><b>Gender:</b></label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sex" id="sex" value="1" required/>
+          <label class="form-check-label" for="sex">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sex" id="sex" value="0" required/>
+          <label class="form-check-label" for="Female">Female</label>
+        </div>
+        <br><br>
+        
+        <!--Chest Pain Type-->
+        <b>Chest Pain Type: </b>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="chestpaintype" id="chestpaintype" value="0" required/>
+          <label class="form-check-label" for="chestpaintype">Typical Angina</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="chestpaintype" id="chestpaintype" value="1" required/>
+          <label class="form-check-label" for="chestpaintype">Atypical Angina</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="chestpaintype" id="chestpaintype" value="2" required/>
+          <label class="form-check-label" for="chestpaintype">Non-anginal Pain</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="chestpaintype" id="chestpaintype" value="3" required/>
+          <label class="form-check-label" for="chestpaintype">Asymptomatic</label>
+        </div>
+        <br><br>
+
+        <!--Resting Blood Pressure-->
+        <label for="formGroupExampleInput"><b>Resting Blood Pressure (mm Hg):</b></label>
+        <input type="number" class="form-control w-25 p-2" name="restingbloodpressure" id="restingbloodpressure" min = 1 placeholder="Resting Blood Pressure (mm Hg)" required/>
+        <br>
+
+        <!--Serum Cholesterol-->
+        <label for="formGroupExampleInput"><b>Serum Cholesterol (mg/dl):</b></label>
+        <input type="number" class="form-control w-25 p-2" name="serumcholesterol" id="serumcholesterol" min = 1 placeholder="Serum Cholesterol (mg/dl)" required/>
+        <br>
+
+        <!--Fasting Blood Sugar-->
+        <b>Fasting Blood Sugar (>mg/dl):</b>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="fastingbloodsugar" id="fastingbloodsugar" value="0" required/> 
+          <label class="form-check-label" for="fastingbloodsugar">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="fastingbloodsugar" id="fastingbloodsugar" value="1" required/>
+          <label class="form-check-label" for="fastingbloodsugar">No</label>
+        </div>
+        <br><br>
+
+        <!--Resting Electrocardiographic Results-->
+        <b>Resting Electrocardiographic Results:</b>
+        <br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="electrocardiographic" id="electrocardiographic" value="0" required/>
+          <label class="form-check-label" for="electrocardiographic">Normal</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="electrocardiographic" id="electrocardiographic" value="1" required/>
+          <label class="form-check-label" for="electrocardiographic">ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="electrocardiographic" id="electrocardiographic" value="2" required/>
+          <label class="form-check-label" for="electrocardiographic">Probable or definite left ventricular hypertrophy by Estes' criteria</label>
+        </div>
+        <br><br>
+
+        <!--Maximum Heart Rate Achieved-->
+        <label for="formGroupExampleInput"><b>Maximum Heart Rate Achieved:</b></label>
+        <input type="number" class="form-control w-25 p-2" name="maxheartrate" id="maxheartrate" min = 1 placeholder="Maximum Heart Rate Achieved" required/>
+        <br>
+
+        <!--Exercise Induced Angina-->
+        <label for="formGroupExampleInput"><b>Exercise Induced Angina:</b></label>
+        <input type="number" class="form-control w-25 p-2" name="exerciseinducedangina" id="exerciseinducedangina" min = 0 placeholder="Exercise Induced Angina" required/>
+        <br>
+
+        <!--Old Peak-->
+        <label for="formGroupExampleInput"><b>Old Peak (ST depression induced by exercise relative to rest):</b></label>
+        <input type="number" class="form-control w-25 p-2" name="oldpeak" id="oldpeak" min = 0 step = "0.1" placeholder="Old Peak" required/>
+        <br>
+        
+        <!--the slope of the peak exercise ST segment (slope)-->
+        <b>The slope of the peak exercise ST segment (slope):</b>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="slope" id="slope" value="0" required/>
+          <label class="form-check-label" for="slope">Upsloping</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="slope" id="slope" value="1" required/>
+          <label class="form-check-label" for="slope">Flat</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="slope" id="slope" value="2" required/> 
+          <label class="form-check-label" for="slope">Downsloping</label>
+        </div>
+        <br><br>
+
+        <!--Number of Major Vessels Colored by Flourosopy-->
+        <b>Number of Major Vessels Colored by Flourosopy:</b>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="majorvessels" id="majorvessels" value="0" required/>
+          <label class="form-check-label" for="majorvessels">0</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="majorvessels" id="majorvessels" value="1" required/>
+          <label class="form-check-label" for="majorvessels">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="majorvessels" id="majorvessels" value="2" required/>
+          <label class="form-check-label" for="majorvessels">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="majorvessels" id="majorvessels" value="3" required/>
+          <label class="form-check-label" for="majorvessels">3</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="majorvessels" id="majorvessels" value="4" required/>
+          <label class="form-check-label" for="majorvessels">4</label>
+        </div>
+        <br><br>
+
+        <!--Thal-->
+        <b>Thal:</b>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="thal" id="thal" value="0" required/>
+          <label class="form-check-label" for="thal">Unknown</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="thal" id="thal" value="1" required/>
+          <label class="form-check-label" for="thal">Normal</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="thal" id="thal" value="2" required/>
+          <label class="form-check-label" for="thal">Fixed Defect</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="thal" id="thal" value="3" required/>
+          <label class="form-check-label" for="thal">Reversable Defect</label>
+        </div>
+        <br><br>
+          
+          <button type="submit" name="predict" id="predict" class= "predict btn">Predict</button>
+        </div>
+      </form>
+    </div>
+      <br>
+
+  </div>
+
+  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
